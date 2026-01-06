@@ -1,3 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
-echo "Hello World"
+Echo "Hello World "
+Echo "I just started the Devops"
