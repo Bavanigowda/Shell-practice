@@ -32,12 +32,12 @@ else
 echo "Mysql already exist ... $y SKIPPING $N"
 fi
 
-dnf list installed mysql
+dnf list installed nginx
 #install if it is not found
 if [ $? -ne 0 ]; then
     dnf install nginx -y
     VALIDATE $? "nginx"
 else
-echo "Nginix already exist ... $G SKIPPING $N"
+echo "nginix already exist ... $G SKIPPING $N"
 fi
 
