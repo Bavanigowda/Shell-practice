@@ -8,7 +8,7 @@ N="\e[0m"
 
 LOGS_FOLDER="/var/log/shell-practice"
 PRACTICE_NAME=$( echo $0 | cut -d "." -f1 )
-LOG-FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
+LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 
 mkdir -p $LOGS_FOLDER
 echo "practice started executed at: $(date)"
@@ -18,16 +18,13 @@ if [ $USERID -ne 0 ]; then
    exit 1 # failure is other than 
    fi
 
-   VALIDATE(){  # functions received inputs through args like shell scripting
-   dnf install mysql -y &>>$LOG_FILE
-
-   if [ $1 -ne 0 ]; then
-      echo -e "Installing $2 ... $R failure $N"
-      exit 1 # failure is other than 
-    else 
-      echo -e "Installing $2 ... $G success $N"
-      exit 1 # failure is other than 
-    fi
+   VALIDATE(){
+  if [ "$1" -ne 0 ]; then
+    echo -e "Installing $2 ... $R failure $N" | tee -a $LOG_FILE
+    exit 1
+  else
+    echo -e "Installing $2 ... $G success $N" | tee -a $LOG_FILE
+  fi
 }
 
 dnf list installed mysql &>>$LOG_FILE
