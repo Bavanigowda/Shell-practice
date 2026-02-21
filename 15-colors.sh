@@ -25,7 +25,7 @@ VALIDATE(){  # functions received inputs through args like shell scripting
 
 dnf list installed mysql
 #install if it is not found
-if [ $1 -ne 0 ]; then
+if [ $? -ne 0 ]; then
     dnf insatll mysql -y
     VALIDATE $? "Mysql"
 else
@@ -34,7 +34,7 @@ fi
 
 dnf list installed mysql
 #install if it is not found
-if [ $1 -ne 0 ]; then
+if [ $? -ne 0 ]; then
     dnf install nginx -y
     VALIDATE $? "nginx"
 else
