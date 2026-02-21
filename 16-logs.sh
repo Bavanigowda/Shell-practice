@@ -27,21 +27,10 @@ if [ $USERID -ne 0 ]; then
   fi
 }
 
-dnf list installed mysql &>>$LOG_FILE
-#install if it is not found
+dnf list installed mysql-server &>>$LOG_FILE
 if [ $? -ne 0 ]; then
-    dnf insatll mysql -y &>>$LOG_FILE
-    VALIDATE $? "Mysql"
+  dnf install mysql-server -y &>>$LOG_FILE
+  VALIDATE $? "Mysql"
 else
-echo "Mysql already exist ... $y SKIPPING $N"
+  echo -e "Mysql already exist ... $Y SKIPPING $N" | tee -a $LOG_FILE
 fi
-
-dnf list installed nginx &>>$LOG_FILE
-#install if it is not found
-if [ $? -ne 0 ]; then
-    dnf install nginx -y &>>$LOG_FILE
-    VALIDATE $? "nginx"
-else
-echo "Nginix already exist ... $G SKIPPING $N"
-fi
-
