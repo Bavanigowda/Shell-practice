@@ -13,13 +13,11 @@ if [ $USERID -ne 0 ]; then
 
 VALIDATE(){  # functions received inputs through args like shell scripting
    dnf install mysql -y
-
-   if [ $1 -ne 0 ]; then
+   if [ "$1" -ne 0 ]; then
       echo -e "Installing $2 ... $R failure $N"
       exit 1 # failure is other than 
     else 
       echo -e "Installing $2 ... $G success $N"
-      exit 1 # failure is other than 
     fi
 }
 
